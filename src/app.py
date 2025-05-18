@@ -163,6 +163,10 @@ app.layout = html.Div([
     dcc.Graph(figure=fig_barras_apiladas)
 ])
 
+server = app.server
+
 # ------------------- Ejecutar -------------------
 if __name__ == "__main__":
     app.run(debug=True)
+
+
