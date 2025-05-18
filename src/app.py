@@ -19,16 +19,16 @@ import plotly.express as px
 # ------------------- Cargar datos -------------------
 
 # Datos de mortalidad
-df_muertes = pd.read_excel("data/Anexo1.NoFetal2019_CE_15-03-23.xlsx", engine="openpyxl")
+df_muertes = pd.read_excel("src/data/Anexo1.NoFetal2019_CE_15-03-23.xlsx", engine="openpyxl")
 df_muertes["COD_DANE"] = df_muertes["COD_DANE"].astype(str).str.zfill(6)
 df_muertes["COD_MUERTE"] = df_muertes["COD_MUERTE"].astype(str).str.strip().str.upper()
 
 # División político-administrativa
-df_divipola = pd.read_excel("data/Anexo3.Divipola_CE_15-03-23.xlsx", engine="openpyxl")
+df_divipola = pd.read_excel("src/data/Anexo3.Divipola_CE_15-03-23.xlsx", engine="openpyxl")
 df_divipola["COD_DANE"] = df_divipola["COD_DANE"].astype(str).str.zfill(6)
 
 # Códigos de muerte
-df_codigos = pd.read_excel("data/Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx", engine="openpyxl", sheet_name="Final")
+df_codigos = pd.read_excel("src/data/Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx", engine="openpyxl", sheet_name="Final")
 df_codigos["COD_MUERTE"] = df_codigos["COD_MUERTE"].astype(str).str.strip().str.upper()
 df_codigos["DESCRIPCION_MUERTE"] = df_codigos["DESCRIPCION_MUERTE"].astype(str).str.strip()
 
@@ -49,7 +49,7 @@ df_mapa["NOMBRE"].replace({
     "VALLE": "VALLE DEL CAUCA"
 }, inplace=True)
 
-with open("data/colombia_departamentos.geojson", "r", encoding="utf-8") as f:
+with open("src/data/colombia_departamentos.geojson", "r", encoding="utf-8") as f:
     geojson_departamentos = json.load(f)
 
 for feature in geojson_departamentos["features"]:
