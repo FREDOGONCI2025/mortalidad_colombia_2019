@@ -128,7 +128,9 @@ fig_barras_apiladas = px.bar(df_sexo_dep, x="NOMBRE", y="TotalMuertes", color="S
 fig_barras_apiladas.update_layout(xaxis_tickangle=-45)
 
 # ------------------- Aplicación Dash -------------------
+
 app = Dash(__name__)
+server = app.server
 app.layout = html.Div([
     html.H1("Análisis de Mortalidad - Colombia 2019", style={"textAlign": "center"}),
 
@@ -162,8 +164,6 @@ app.layout = html.Div([
     html.H2("Comparación de muertes por sexo y departamento"),
     dcc.Graph(figure=fig_barras_apiladas)
 ])
-
-server = app.server
 
 # ------------------- Ejecutar -------------------
 if __name__ == "__main__":
