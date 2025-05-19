@@ -6,20 +6,18 @@ Esta aplicación web interactiva, desarrollada con Python y Dash, permite explor
 
 ```
 mortalidad_app/
-│
 ├── src/
-│   ├── app.py                 # Código principal de la aplicación
-│   └── data/                  # Archivos de entrada (Excel, GeoJSON)
-│       ├── Anexo1.NoFetal2019_CE_15-03-23.xlsx
-│       ├── Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx
-│       ├── Anexo3.Divipola_CE_15-03-23.xlsx
-│       └── colombia_departamentos.geojson
-│
-├── requirements.txt           # Dependencias del proyecto
-├── render.yaml                # Configuración para despliegue en Render
-└── README.md                  # Este archivo
-```
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── render.yaml
+├── data/
+│   ├── Anexo1.NoFetal2019_CE_15-03-23.xlsx
+│   ├── Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx
+│   ├── Anexo3.Divipola_CE_15-03-23.xlsx
+│   └── colombia_departamentos.geojson
+└── README.md 
 
+```
 ## Visualizaciones Incluidas
 
 1. **Mapa**: Muertes por departamento.
@@ -32,7 +30,12 @@ mortalidad_app/
 
 ## Requisitos
 
-- Python >= 3.9
+- Python 3.11
+- Dash 3.0.4
+- Plotly 6.1.0
+- Pandas 2.2.3
+- OpenPyXL 3.1.5
+- Gunicorn 23.0.0
 - Ver `requirements.txt` para dependencias adicionales
 
 ## Cómo ejecutar

@@ -15,20 +15,24 @@ import pandas as pd
 import json
 from dash import Dash, html, dcc, dash_table
 import plotly.express as px
+import os
 
 # ------------------- Cargar datos -------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "..", "data")
+
 
 # Datos de mortalidad
-df_muertes = pd.read_excel("src/data/Anexo1.NoFetal2019_CE_15-03-23.xlsx", engine="openpyxl")
+df_muertes = pd.read_excel(os.path.join(DATA_DIR,"Anexo1.NoFetal2019_CE_15-03-23.xlsx"), engine="openpyxl")
 df_muertes["COD_DANE"] = df_muertes["COD_DANE"].astype(str).str.zfill(6)
 df_muertes["COD_MUERTE"] = df_muertes["COD_MUERTE"].astype(str).str.strip().str.upper()
 
 # División político-administrativa
-df_divipola = pd.read_excel("src/data/Anexo3.Divipola_CE_15-03-23.xlsx", engine="openpyxl")
+df_divipola = pd.read_excel(os.path.join(DATA_DIR,"Anexo3.Divipola_CE_15-03-23.xlsx"), engine="openpyxl")
 df_divipola["COD_DANE"] = df_divipola["COD_DANE"].astype(str).str.zfill(6)
 
 # Códigos de muerte
-df_codigos = pd.read_excel("src/data/Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx", engine="openpyxl", sheet_name="Final")
+df_codigos = pd.read_excel(os.path.join(DATA_DIR,"Anexo2.CodigosDeMuerte_CE_15-03-23.xlsx"), engine="openpyxl", sheet_name="Final")
 df_codigos["COD_MUERTE"] = df_codigos["COD_MUERTE"].astype(str).str.strip().str.upper()
 df_codigos["DESCRIPCION_MUERTE"] = df_codigos["DESCRIPCION_MUERTE"].astype(str).str.strip()
 
@@ -50,7 +54,7 @@ df_mapa["NOMBRE"] = df_mapa["NOMBRE"].replace({
 })
 
 
-with open("src/data/colombia_departamentos.geojson", "r", encoding="utf-8") as f:
+with open(os.path.join(DATA_DIR,"colombia_departamentos.geojson"), "r", encoding="utf-8") as f:
     geojson_departamentos = json.load(f)
 
 for feature in geojson_departamentos["features"]:
