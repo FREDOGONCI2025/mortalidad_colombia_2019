@@ -43,11 +43,12 @@ df_total_muertes.rename(columns={"COD_DEPARTAMENTO": "COD_DEPTO"}, inplace=True)
 df_mapa = pd.merge(df_total_muertes, df_departamentos, on="COD_DEPTO", how="left")
 df_mapa["NOMBRE"] = df_mapa["NOMBRE"].str.strip().str.upper()
 
-df_mapa["NOMBRE"].replace({
+df_mapa["NOMBRE"] = df_mapa["NOMBRE"].replace({
     "ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA": "SAN ANDRÉS Y PROVIDENCIA",
     "BOGOTA D.C.": "BOGOTÁ D.C.",
     "VALLE": "VALLE DEL CAUCA"
-}, inplace=True)
+})
+
 
 with open("src/data/colombia_departamentos.geojson", "r", encoding="utf-8") as f:
     geojson_departamentos = json.load(f)
